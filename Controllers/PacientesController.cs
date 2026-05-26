@@ -29,8 +29,12 @@ public class PacientesController : Controller
         {
             _context.Add(paciente);
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
-        return RedirectToAction(nameof(Index));
+        // Si hay errores de validación, regresar la vista con los errores y abrir el modal de crear
+        ViewData["AbrirModal"] = "Crear";
+        var pacientes = await _context.Pacientes.ToListAsync();
+        return View("Index", pacientes);
     }
 
     // EDIT POST
@@ -43,8 +47,12 @@ public class PacientesController : Controller
         {
             _context.Update(paciente);
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
-        return RedirectToAction(nameof(Index));
+        // Si hay errores de validación, regresar la vista con los errores y abrir el modal de editar
+        ViewData["AbrirModal"] = "Editar";
+        var pacientes = await _context.Pacientes.ToListAsync();
+        return View("Index", pacientes);
     }
 
     // DELETE POST

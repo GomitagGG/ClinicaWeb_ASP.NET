@@ -235,7 +235,7 @@ width:90% !important;
 <table border="1" cellpadding="6" cellspacing="0">
     <thead>
         <tr>
-            <th>Nombre</th><th>RUT</th><th>Edad</th><th>Teléfono</th><th>Email</th><th>Diagnóstico</th><th>Acciones</th>
+            <th>Nombre</th><th>RUT</th><th>Edad</th><th>Teléfono</th><th>Email</th><th>Dirección</th><th>Diagnóstico</th><th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -247,6 +247,7 @@ width:90% !important;
                 <td>@p.Edad</td>
                 <td>@p.Telefono</td>
                 <td>@p.Email</td>
+                <td>@p.Direccion</td>
                 <td>@p.Diagnostico</td>
                 <td>
                     <button onclick="abrirEditar(@p.Id,'@p.NombreCompleto','@p.Run',@p.Edad,'@p.Telefono','@p.Email','@p.Direccion','@p.Diagnostico')">Editar</button>
@@ -263,13 +264,14 @@ width:90% !important;
         <h3>Nuevo Paciente</h3>
         <form asp-action="Create" method="post">
             @Html.AntiForgeryToken()
-            <p><label>Nombre: <input name="NombreCompleto" required /></label></p>
-            <p><label>RUT: <input name="Run" required /></label></p>
-            <p><label>Edad: <input name="Edad" type="number" min="0" max="120" /></label></p>
-            <p><label>Teléfono: <input name="Telefono" /></label></p>
-            <p><label>Email: <input name="Email" type="email" /></label></p>
-            <p><label>Dirección: <input name="Direccion" /></label></p>
-            <p><label>Diagnóstico: <textarea name="Diagnostico"></textarea></label></p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <p><label>Nombre: @Html.TextBox("NombreCompleto", null, new { required = "required" }) @Html.ValidationMessage("NombreCompleto", null, new { @class = "text-danger" })</label></p>
+            <p><label>RUT: @Html.TextBox("Run", null, new { required = "required" }) @Html.ValidationMessage("Run", null, new { @class = "text-danger" })</label></p>
+            <p><label>Edad: @Html.TextBox("Edad", null, new { type = "number", min = "0", max = "120" }) @Html.ValidationMessage("Edad", null, new { @class = "text-danger" })</label></p>
+            <p><label>Teléfono: @Html.TextBox("Telefono") @Html.ValidationMessage("Telefono", null, new { @class = "text-danger" })</label></p>
+            <p><label>Email: @Html.TextBox("Email", null, new { type = "email" }) @Html.ValidationMessage("Email", null, new { @class = "text-danger" })</label></p>
+            <p><label>Dirección: @Html.TextBox("Direccion") @Html.ValidationMessage("Direccion", null, new { @class = "text-danger" })</label></p>
+            <p><label>Diagnóstico: @Html.TextArea("Diagnostico") @Html.ValidationMessage("Diagnostico", null, new { @class = "text-danger" })</label></p>
             <button type="submit">Guardar</button>
             <button type="button" onclick="document.getElementById('modalCrear').style.display='none'">Cancelar</button>
         </form>
@@ -282,14 +284,15 @@ width:90% !important;
         <h3>Editar Paciente</h3>
         <form asp-action="Edit" method="post">
             @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <input type="hidden" id="eId" name="Id" />
-            <p><label>Nombre: <input id="eNombre" name="NombreCompleto" required /></label></p>
-            <p><label>RUT: <input id="eRun" name="Run" required /></label></p>
-            <p><label>Edad: <input id="eEdad" name="Edad" type="number" min="0" max="120" /></label></p>
-            <p><label>Teléfono: <input id="eTel" name="Telefono" /></label></p>
-            <p><label>Email: <input id="eEmail" name="Email" type="email" /></label></p>
-            <p><label>Dirección: <input id="eDir" name="Direccion" /></label></p>
-            <p><label>Diagnóstico: <textarea id="eDiag" name="Diagnostico"></textarea></label></p>
+            <p><label>Nombre: @Html.TextBox("NombreCompleto", null, new { id = "eNombre", required = "required" }) @Html.ValidationMessage("NombreCompleto", null, new { @class = "text-danger" })</label></p>
+            <p><label>RUT: @Html.TextBox("Run", null, new { id = "eRun", required = "required" }) @Html.ValidationMessage("Run", null, new { @class = "text-danger" })</label></p>
+            <p><label>Edad: @Html.TextBox("Edad", null, new { id = "eEdad", type = "number", min = "0", max = "120" }) @Html.ValidationMessage("Edad", null, new { @class = "text-danger" })</label></p>
+            <p><label>Teléfono: @Html.TextBox("Telefono", null, new { id = "eTel" }) @Html.ValidationMessage("Telefono", null, new { @class = "text-danger" })</label></p>
+            <p><label>Email: @Html.TextBox("Email", null, new { id = "eEmail", type = "email" }) @Html.ValidationMessage("Email", null, new { @class = "text-danger" })</label></p>
+            <p><label>Dirección: @Html.TextBox("Direccion", null, new { id = "eDir" }) @Html.ValidationMessage("Direccion", null, new { @class = "text-danger" })</label></p>
+            <p><label>Diagnóstico: @Html.TextArea("Diagnostico", null, new { id = "eDiag" }) @Html.ValidationMessage("Diagnostico", null, new { @class = "text-danger" })</label></p>
             <button type="submit">Guardar</button>
             <button type="button" onclick="document.getElementById('modalEditar').style.display='none'">Cancelar</button>
         </form>
@@ -327,4 +330,14 @@ function abrirEliminar(id, nombre) {
     document.getElementById('delNombre').textContent = nombre;
     document.getElementById('modalEliminar').style.display = 'flex';
 }
+
+// Abrir modal automáticamente si hay errores de validación
+window.addEventListener('DOMContentLoaded', function() {
+    var abrir = '@ViewData["AbrirModal"]';
+    if (abrir === 'Crear') {
+        document.getElementById('modalCrear').style.display = 'flex';
+    } else if (abrir === 'Editar') {
+        document.getElementById('modalEditar').style.display = 'flex';
+    }
+});
 </script>
