@@ -1,0 +1,286 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<style>
+
+body{
+    background:#f4fbfd;
+}
+
+/* HERO */
+
+.hero{
+
+    min-height:75vh;
+
+    background:
+    linear-gradient(
+    rgba(0,120,160,.65),
+    rgba(0,180,216,.55)
+    ),
+    url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3");
+
+    background-size:cover;
+
+    background-position:center;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    margin-top:30px;
+
+    padding:40px;
+}
+
+.hero-content{
+
+    max-width:800px;
+
+    color:white;
+}
+
+.hero h1{
+
+    font-size:68px;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 8px 20px rgba(0,0,0,.2);
+}
+
+.hero p{
+
+    font-size:24px;
+
+    margin-bottom:40px;
+
+    opacity:.95;
+}
+
+/* BOTÓN */
+
+.btn-hero{
+
+    display:inline-block;
+
+    background:white;
+
+    color:#0099cc;
+
+    padding:15px 38px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    font-size:18px;
+
+    transition:.3s;
+}
+
+.btn-hero:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 15px 30px rgba(0,0,0,.18);
+
+    color:#007aa3;
+}
+
+/* SERVICIOS */
+
+.servicios-home{
+
+    margin-top:80px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+    auto-fit,
+    minmax(280px,1fr)
+    );
+
+    gap:30px;
+}
+
+.servicio-card{
+
+    background:
+    rgba(255,255,255,.75);
+
+    backdrop-filter:
+    blur(12px);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.servicio-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 20px 45px rgba(0,153,204,.18);
+}
+
+.icono{
+
+    font-size:60px;
+
+    display:block;
+
+    margin-bottom:20px;
+}
+
+.servicio-card h3{
+
+    color:#0077a6;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+}
+
+.servicio-card p{
+
+    color:#666;
+
+    line-height:1.7;
+}
+
+/* RESPONSIVE */
+
+
+.hero{
+
+min-height:60vh;
+
+padding:25px;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+}
+
+</style>
+
+
+
+<div class="hero">
+
+    <div class="hero-content">
+
+        <h1>Clínica Santa María</h1>
+
+        <p>
+            Cuidando tu salud con dedicación y profesionalismo
+        </p>
+
+        <a
+            asp-controller="Home"
+            asp-action="Clinica"
+            class="btn-hero">
+
+            Conócenos
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<div class="servicios-home">
+
+    <div class="servicio-card">
+
+        <span class="icono">
+            🏥
+        </span>
+
+        <h3>
+            Atención Médica
+        </h3>
+
+        <p>
+            Contamos con especialistas en diversas áreas de la salud.
+        </p>
+
+    </div>
+
+
+
+    <div class="servicio-card">
+
+        <span class="icono">
+            🩺
+        </span>
+
+        <h3>
+            Diagnóstico
+        </h3>
+
+        <p>
+            Equipos modernos para diagnósticos precisos y confiables.
+        </p>
+
+    </div>
+
+
+
+    <div class="servicio-card">
+
+        <span class="icono">
+            💊
+        </span>
+
+        <h3>
+            Tratamientos
+        </h3>
+
+        <p>
+            Planes de tratamiento personalizados para cada paciente.
+        </p>
+
+    </div>
+
+</div>

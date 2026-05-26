@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - ClinicaWeb</title>
+
+    <script type="importmap"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/ClinicaWeb.styles.css" asp-append-version="true" />
+
+    <style>
+
+        body{
+            background:#f7fbfd;
+        }
+
+        /* NAVBAR */
+        .custom-navbar{
+            background:
+            linear-gradient(
+            90deg,
+            #0099cc,
+            #00b4d8
+            );
+
+            min-height:85px;
+
+            box-shadow:
+            0 5px 20px rgba(0,0,0,.08);
+        }
+
+        .navbar-brand{
+            color:white !important;
+
+            font-size:32px;
+
+            letter-spacing:1px;
+        }
+
+        .nav-link{
+
+            color:
+            rgba(255,255,255,.90)
+            !important;
+
+            font-size:17px;
+
+            font-weight:500;
+
+            transition:.25s;
+        }
+
+        .nav-link:hover{
+
+            color:white !important;
+
+            transform:
+            translateY(-2px);
+        }
+
+        .navbar-nav{
+
+            align-items:center;
+        }
+
+        /* BOTÓN */
+        .btn-reserva{
+
+            background:white;
+
+            color:#0099cc;
+
+            border:none;
+
+            font-weight:700;
+
+            padding:
+            10px 24px;
+
+            border-radius:50px;
+
+            transition:.3s;
+        }
+
+        .btn-reserva:hover{
+
+            transform:
+            translateY(-2px);
+
+            box-shadow:
+            0 10px 20px rgba(0,0,0,.15);
+
+            color:#0077a6;
+        }
+
+        /* CONTENIDO */
+        main{
+
+            min-height:
+            calc(100vh - 180px);
+
+            padding-top:20px;
+        }
+
+        /* FOOTER */
+        footer{
+
+            background:white;
+
+            padding:20px;
+
+            text-align:center;
+
+            color:#777;
+
+            margin-top:50px;
+        }
+
+        /* RESPONSIVE */
+      
+
+            .navbar-nav{
+
+                padding-top:20px;
+
+                text-align:center;
+            }
+
+            .btn-reserva{
+
+                width:100%;
+
+                margin-top:20px;
+            }
+
+        
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+
+<div class="container">
+
+    <!-- LOGO -->
+    <a class="navbar-brand fw-bold"
+       asp-controller="Home"
+       asp-action="Index">
+
+       🏥 ClinicaWeb
+
+    </a>
+
+    <!-- BOTÓN MÓVIL -->
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarMain">
+
+        <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <!-- MENÚ -->
+    <div
+        class="collapse navbar-collapse"
+        id="navbarMain">
+
+        <ul class="navbar-nav mx-auto gap-lg-4">
+
+            <li class="nav-item">
+                <a class="nav-link"
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    Inicio
+
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link"
+                   asp-controller="Home"
+                   asp-action="Clinica">
+
+                    Clínica
+
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link"
+                   asp-controller="Home"
+                   asp-action="Especialidades">
+
+                    Especialidades
+
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link"
+                   asp-controller="Home"
+                   asp-action="Contacto">
+
+                    Contacto
+
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link"
+                   asp-controller="Pacientes"
+                   asp-action="Index">
+
+                    Pacientes
+
+                </a>
+            </li>
+
+        </ul>
+
+       
+    </div>
+
+</div>
+
+</nav>
+
+</header>
+
+
+<div class="container">
+
+<main role="main">
+
+@RenderBody()
+
+</main>
+
+</div>
+
+
+<footer>
+
+<div class="container">
+
+© 2026 ClinicaWeb · Todos los derechos reservados
+
+</div>
+
+</footer>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

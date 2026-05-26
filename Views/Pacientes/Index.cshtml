@@ -1,0 +1,330 @@
+@model IEnumerable<ClinicaWeb.Models.Paciente>
+@{ ViewData["Title"] = "Pacientes"; }
+
+<h2>Gestión de Pacientes</h2>
+<button onclick="document.getElementById('modalCrear').style.display='flex'">+ Nuevo Paciente</button>
+<hr />
+<style>
+
+body{
+    background:#f5f9ff;
+}
+
+/* TITULO */
+h2{
+    font-size:2.3rem;
+    font-weight:800;
+    color:#143d73;
+    margin-bottom:20px;
+}
+
+/* BOTONES */
+button{
+    border:none;
+    padding:11px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.25s;
+    font-weight:600;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+/* NUEVO */
+h2 + button{
+    background:linear-gradient(135deg,#1677ff,#0a58ca);
+    color:white;
+    box-shadow:0 8px 20px rgba(22,119,255,.25);
+}
+
+/* TABLA */
+table{
+    width:100%;
+    border:none;
+    border-collapse:collapse;
+    overflow:hidden;
+
+    background:white;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+
+    margin-top:25px;
+}
+
+thead{
+    background:
+    linear-gradient(90deg,#0b5ed7,#0d6efd);
+
+    color:white;
+}
+
+th{
+    padding:18px;
+    text-align:left;
+}
+
+td{
+    padding:16px;
+    border-bottom:1px solid #edf2f7;
+}
+
+tbody tr{
+    transition:.2s;
+}
+
+tbody tr:hover{
+    background:#f4f9ff;
+}
+
+/* BOTONES TABLA */
+td button{
+    margin-right:8px;
+}
+
+td button:first-child{
+    background:#14b85f;
+    color:white;
+}
+
+td button:last-child{
+    background:#ef4444;
+    color:white;
+}
+
+/* MODALES */
+#modalCrear,
+#modalEditar,
+#modalEliminar{
+    backdrop-filter:blur(8px);
+    z-index:999;
+}
+
+/* CAJA */
+#modalCrear > div,
+#modalEditar > div,
+#modalEliminar > div{
+
+    background:white !important;
+
+    border-radius:20px !important;
+
+    box-shadow:
+    0 30px 60px rgba(0,0,0,.18);
+
+    animation:entrada .25s ease;
+
+    max-height:90vh;
+
+    overflow:auto;
+}
+
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+h3{
+    color:#143d73;
+    margin-bottom:20px;
+}
+
+/* FORM */
+form p{
+    margin-bottom:16px;
+}
+
+label{
+    display:flex;
+    flex-direction:column;
+
+    font-weight:600;
+
+    color:#334155;
+}
+
+input,
+textarea{
+
+    width:100%;
+
+    margin-top:8px;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    border:1px solid #d6deea;
+
+    outline:none;
+
+    transition:.25s;
+}
+
+input:focus,
+textarea:focus{
+
+    border-color:#1677ff;
+
+    box-shadow:
+    0 0 0 4px rgba(22,119,255,.15);
+
+}
+
+textarea{
+    resize:vertical;
+    min-height:90px;
+}
+
+/* BOTONES FORM */
+form button[type="submit"]{
+
+    background:
+    linear-gradient(135deg,#1677ff,#0a58ca);
+
+    color:white;
+
+}
+
+form button[type="button"]{
+
+    background:#e2e8f0;
+
+    color:#334155;
+
+}
+
+/* ELIMINAR */
+#modalEliminar h3{
+    color:#dc2626;
+}
+
+#delNombre{
+    font-size:18px;
+    margin-bottom:20px;
+    color:#444;
+}
+
+/* RESPONSIVE */
+
+table{
+display:block;
+overflow-x:auto;
+}
+
+#modalCrear > div,
+#modalEditar > div{
+width:90% !important;
+}
+
+}
+
+</style>
+
+<!-- TABLA -->
+<table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Nombre</th><th>RUT</th><th>Edad</th><th>Teléfono</th><th>Email</th><th>Diagnóstico</th><th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.NombreCompleto</td>
+                <td>@p.Run</td>
+                <td>@p.Edad</td>
+                <td>@p.Telefono</td>
+                <td>@p.Email</td>
+                <td>@p.Diagnostico</td>
+                <td>
+                    <button onclick="abrirEditar(@p.Id,'@p.NombreCompleto','@p.Run',@p.Edad,'@p.Telefono','@p.Email','@p.Direccion','@p.Diagnostico')">Editar</button>
+                    <button onclick="abrirEliminar(@p.Id,'@p.NombreCompleto')">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- CREAR PACIENTE -->
+<div id="modalCrear" style="display:none;position:fixed;inset:0;background:#0005;align-items:center;justify-content:center;">
+    <div style="background:white;padding:2rem;border-radius:8px;width:400px;">
+        <h3>Nuevo Paciente</h3>
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <p><label>Nombre: <input name="NombreCompleto" required /></label></p>
+            <p><label>RUT: <input name="Run" required /></label></p>
+            <p><label>Edad: <input name="Edad" type="number" min="0" max="120" /></label></p>
+            <p><label>Teléfono: <input name="Telefono" /></label></p>
+            <p><label>Email: <input name="Email" type="email" /></label></p>
+            <p><label>Dirección: <input name="Direccion" /></label></p>
+            <p><label>Diagnóstico: <textarea name="Diagnostico"></textarea></label></p>
+            <button type="submit">Guardar</button>
+            <button type="button" onclick="document.getElementById('modalCrear').style.display='none'">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<!-- EDITAR PACIENTE -->
+<div id="modalEditar" style="display:none;position:fixed;inset:0;background:#0005;align-items:center;justify-content:center;">
+    <div style="background:white;padding:2rem;border-radius:8px;width:400px;">
+        <h3>Editar Paciente</h3>
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" id="eId" name="Id" />
+            <p><label>Nombre: <input id="eNombre" name="NombreCompleto" required /></label></p>
+            <p><label>RUT: <input id="eRun" name="Run" required /></label></p>
+            <p><label>Edad: <input id="eEdad" name="Edad" type="number" min="0" max="120" /></label></p>
+            <p><label>Teléfono: <input id="eTel" name="Telefono" /></label></p>
+            <p><label>Email: <input id="eEmail" name="Email" type="email" /></label></p>
+            <p><label>Dirección: <input id="eDir" name="Direccion" /></label></p>
+            <p><label>Diagnóstico: <textarea id="eDiag" name="Diagnostico"></textarea></label></p>
+            <button type="submit">Guardar</button>
+            <button type="button" onclick="document.getElementById('modalEditar').style.display='none'">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<!-- ELIMINAR  UN PACIENTE-->
+<div id="modalEliminar" style="display:none;position:fixed;inset:0;background:#0005;align-items:center;justify-content:center;">
+    <div style="background:white;padding:2rem;border-radius:8px;width:350px;">
+        <h3>¿Eliminar paciente?</h3>
+        <p id="delNombre"></p>
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" id="delId" name="Id" />
+            <button type="submit">Confirmar</button>
+            <button type="button" onclick="document.getElementById('modalEliminar').style.display='none'">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function abrirEditar(id, nombre, run, edad, tel, email, dir, diag) {
+    document.getElementById('eId').value     = id;
+    document.getElementById('eNombre').value = nombre;
+    document.getElementById('eRun').value    = run;
+    document.getElementById('eEdad').value   = edad;
+    document.getElementById('eTel').value    = tel;
+    document.getElementById('eEmail').value  = email;
+    document.getElementById('eDir').value    = dir;
+    document.getElementById('eDiag').value   = diag;
+    document.getElementById('modalEditar').style.display = 'flex';
+}
+function abrirEliminar(id, nombre) {
+    document.getElementById('delId').value          = id;
+    document.getElementById('delNombre').textContent = nombre;
+    document.getElementById('modalEliminar').style.display = 'flex';
+}
+</script>
