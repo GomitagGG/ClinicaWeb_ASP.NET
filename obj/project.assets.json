@@ -5769,19 +5769,19 @@
     ]
   },
   "packageFolders": {
-    "/home/gomitag/.nuget/packages/": {}
+    "/home/yan/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/ClinicaWeb.csproj",
+      "projectUniqueName": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/ClinicaWeb.csproj",
       "projectName": "ClinicaWeb",
-      "projectPath": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/ClinicaWeb.csproj",
-      "packagesPath": "/home/gomitag/.nuget/packages/",
-      "outputPath": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/obj/",
+      "projectPath": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/ClinicaWeb.csproj",
+      "packagesPath": "/home/yan/.nuget/packages/",
+      "outputPath": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/gomitag/.nuget/NuGet/NuGet.Config"
+        "/home/yan/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"

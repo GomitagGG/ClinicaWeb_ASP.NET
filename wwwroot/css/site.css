@@ -1,3 +1,30 @@
+.login-bg {
+    background: linear-gradient(120deg, #0099cc 0%, #2d9e6b 100%);
+    min-height: 100vh;
+}
+.login-card {
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
+    padding: 2.5rem 2rem;
+    background: #fff;
+}
+.login-card .form-label {
+    color: #1a6b4a;
+    font-weight: 500;
+}
+.login-card .btn-success {
+    background: linear-gradient(90deg,#1a6b4a,#2d9e6b);
+    border: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+.login-card .btn-success:hover {
+    background: linear-gradient(90deg,#2d9e6b,#1a6b4a);
+}
+.login-card .alert-danger {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
 .hero {
     background: linear-gradient(135deg, #1a6b4a, #2d9e6b);
     color: white;

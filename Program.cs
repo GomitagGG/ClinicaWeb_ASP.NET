@@ -9,6 +9,7 @@ builder.Services.AddDbContext<ClinicaContext>(options =>
     options.UseMySql(connStr, ServerVersion.AutoDetect(connStr)));
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -18,10 +19,24 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
 app.UseAuthorization();
+
+// Middleware: solo restringir acceso a /Pacientes/* y /Account/Logout
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path.Value?.ToLower();
+    if ((path.StartsWith("/pacientes") || path.StartsWith("/account/logout")) && context.Session.GetString("Admin") == null)
+    {
+        context.Response.Redirect("/Account/Login");
+        return;
+    }
+    await next();
+});
 
 app.MapControllerRoute(
     name: "default",

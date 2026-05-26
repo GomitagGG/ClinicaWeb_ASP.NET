@@ -7,4 +7,5 @@ public class ClinicaContext : DbContext
 {
     public ClinicaContext(DbContextOptions<ClinicaContext> options) : base(options) {}
     public DbSet<Paciente> Pacientes { get; set; }
+    public DbSet<Admin> Admins { get; set; }
 }

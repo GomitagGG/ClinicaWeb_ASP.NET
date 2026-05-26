@@ -19,57 +19,61 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = ClinicaWeb
 build_property.RootNamespace = ClinicaWeb
-build_property.ProjectDir = /home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/
+build_property.ProjectDir = /home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb
+build_property.MSBuildProjectDirectory = /home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Cita/Index.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Cita/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2l0YS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Home/Clinica.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Home/Clinica.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9DbGluaWNhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Home/Contacto.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Home/Contacto.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Db250YWN0by5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Home/Especialidades.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Home/Especialidades.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Fc3BlY2lhbGlkYWRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Home/Index.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Pacientes/Index.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Pacientes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFjaWVudGVzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Shared/Error.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/_ViewImports.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/_ViewStart.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/Views/Shared/_Layout.cshtml]
+[/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-6c3mf2auyo
