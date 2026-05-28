@@ -303,7 +303,6 @@
 /home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/bin/Debug/net10.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/bin/Debug/net10.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/bin/Debug/net10.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/obj/Debug/net10.0/compressed/suqacgqw0z-{0}-btk8cv3vob-btk8cv3vob.gz
 /home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/bin/Debug/net10.0/appsettings.Development.json
 /home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/bin/Debug/net10.0/appsettings.json
 /home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/bin/Debug/net10.0/ClinicaWeb.staticwebassets.runtime.json
@@ -611,3 +610,5 @@
 /home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/obj/Debug/net10.0/ClinicaWeb.pdb
 /home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/obj/Debug/net10.0/ClinicaWeb.genruntimeconfig.cache
 /home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/obj/Debug/net10.0/ref/ClinicaWeb.dll
+/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/obj/Debug/net10.0/ClinicaWeb.sourcelink.json
+/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/obj/Debug/net10.0/compressed/suqacgqw0z-{0}-khmtqnxs74-khmtqnxs74.gz

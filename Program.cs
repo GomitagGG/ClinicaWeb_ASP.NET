@@ -1,3 +1,20 @@
+// ============================================================
+// PUNTO DE ENTRADA DE LA APLICACIÓN
+//
+// Ejecución:
+//   dotnet run
+//   La app escucha en https://localhost:5001 (o el puerto en launchSettings.json).
+//
+// Conexión a la base de datos:
+//   Motor:  MySQL (via Pomelo.EntityFrameworkCore.MySql)
+//   Config: appsettings.json → "ConnectionStrings:DefaultConnection"
+//   Ejemplo de cadena de conexión:
+//     "Server=localhost;Database=clinicadb;User=root;Password=tu_clave;"
+//
+// Migraciones (crear/actualizar tablas):
+//   dotnet ef migrations add <Nombre>
+//   dotnet ef database update
+// ============================================================
 using Microsoft.EntityFrameworkCore;
 using ClinicaWeb.Data;
 

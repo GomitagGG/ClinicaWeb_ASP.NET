@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/ClinicaWeb.csproj": {}
+    "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/ClinicaWeb.csproj": {}
   },
   "projects": {
-    "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/ClinicaWeb.csproj": {
+    "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/ClinicaWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/ClinicaWeb.csproj",
+        "projectUniqueName": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/ClinicaWeb.csproj",
         "projectName": "ClinicaWeb",
-        "projectPath": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/ClinicaWeb.csproj",
-        "packagesPath": "/home/yan/.nuget/packages/",
-        "outputPath": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/obj/",
+        "projectPath": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/ClinicaWeb.csproj",
+        "packagesPath": "/home/gomitag/.nuget/packages/",
+        "outputPath": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/yan/.nuget/NuGet/NuGet.Config"
+          "/home/gomitag/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"

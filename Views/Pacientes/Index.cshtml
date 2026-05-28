@@ -1,3 +1,22 @@
+@*
+    Vista: Views/Pacientes/Index.cshtml
+    Controlador: PacientesController.Index()  →  GET /Pacientes
+    Descripción: Panel de gestión CRUD de pacientes. Solo accesible con sesión de administrador
+                 (el middleware en Program.cs redirige a /Account/Login si no hay sesión).
+
+    Modelo: IEnumerable<Paciente> — lista completa de pacientes leída de la tabla Pacientes en MySQL.
+
+    Formularios y modales:
+      - #modalCrear  →  POST /Pacientes/Create   (inserta nuevo paciente)
+      - #modalEditar →  POST /Pacientes/Edit/{id} (actualiza paciente existente)
+      - #modalEliminar → POST /Pacientes/Delete/{id} (elimina paciente)
+
+    Todos los formularios incluyen @Html.AntiForgeryToken() para protección CSRF.
+
+    JavaScript:
+      - abrirEditar(id, nombre, run, edad, tel, email, dir, diag): rellena el modal de edición.
+      - abrirEliminar(id, nombre): rellena el modal de confirmación de eliminación.
+*@
 @model IEnumerable<ClinicaWeb.Models.Paciente>
 @{ ViewData["Title"] = "Pacientes"; }
 

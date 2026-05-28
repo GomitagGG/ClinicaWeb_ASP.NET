@@ -5769,19 +5769,19 @@
     ]
   },
   "packageFolders": {
-    "/home/yan/.nuget/packages/": {}
+    "/home/gomitag/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/ClinicaWeb.csproj",
+      "projectUniqueName": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/ClinicaWeb.csproj",
       "projectName": "ClinicaWeb",
-      "projectPath": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/ClinicaWeb.csproj",
-      "packagesPath": "/home/yan/.nuget/packages/",
-      "outputPath": "/home/yan/Documentos/GitHub/ClinicaWeb_ASP.NET/obj/",
+      "projectPath": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/ClinicaWeb.csproj",
+      "packagesPath": "/home/gomitag/.nuget/packages/",
+      "outputPath": "/home/gomitag/todos los archivos/Univercidad 2026/N.NET/unidad 2/Proyecto_clinica/ClinicaWeb/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/yan/.nuget/NuGet/NuGet.Config"
+        "/home/gomitag/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -6140,7 +6140,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Build' 17.10.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-w3q9-fxm7-j8fq",
+      "message": "El paquete \"Microsoft.Build\" 17.10.4 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-w3q9-fxm7-j8fq",
       "libraryId": "Microsoft.Build",
       "targetGraphs": [
         "net10.0"
@@ -6150,7 +6150,7 @@
       "code": "NU1901",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'NuGet.Packaging' 6.11.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
+      "message": "El paquete \"NuGet.Packaging\" 6.11.0 tiene una vulnerabilidad de gravedad baja conocida, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
       "libraryId": "NuGet.Packaging",
       "targetGraphs": [
         "net10.0"
@@ -6160,7 +6160,7 @@
       "code": "NU1901",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'NuGet.Protocol' 6.11.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
+      "message": "El paquete \"NuGet.Protocol\" 6.11.0 tiene una vulnerabilidad de gravedad baja conocida, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
       "libraryId": "NuGet.Protocol",
       "targetGraphs": [
         "net10.0"
