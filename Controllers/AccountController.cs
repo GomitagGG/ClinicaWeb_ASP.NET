@@ -1,62 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using ClinicaWeb.Models;
+using MySqlConnector;
 using ClinicaWeb.Data;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
 
-namespace ClinicaWeb.Controllers
+namespace ClinicaWeb.Controllers;
+
+public class AccountController : Controller
 {
-    /// <summary>
-    /// Controlador de autenticación. Gestiona el inicio y cierre de sesión de administradores.
-    /// La sesión se almacena en memoria con la clave "Admin" (valor: nombre de usuario).
-    /// </summary>
-    public class AccountController : Controller
+    private readonly DbConnectionFactory _factory;
+
+    public AccountController(DbConnectionFactory factory)
     {
-        private readonly ClinicaContext _context;
+        _factory = factory;
+    }
 
-        /// <summary>
-        /// Recibe el contexto de base de datos por inyección de dependencias.
-        /// </summary>
-        public AccountController(ClinicaContext context)
-        {
-            _context = context;
-        }
+    [HttpGet]
+    public IActionResult Login()
+    {
+        return View();
+    }
 
-        /// <summary>
-        /// GET /Account/Login — Muestra el formulario de inicio de sesión.
-        /// </summary>
-        [HttpGet]
-        public IActionResult Login()
+    [HttpPost]
+    public async Task<IActionResult> Login(string usuario, string clave)
+    {
+        using var conn = _factory.Create();
+        await conn.OpenAsync();
+        using var cmd = new MySqlCommand(
+            "SELECT Usuario FROM Admins WHERE Usuario=@Usuario AND Clave=@Clave LIMIT 1", conn);
+        cmd.Parameters.AddWithValue("@Usuario", usuario);
+        cmd.Parameters.AddWithValue("@Clave",   clave);
+        var resultado = await cmd.ExecuteScalarAsync();
+        if (resultado != null)
         {
-            return View();
+            HttpContext.Session.SetString("Admin", resultado.ToString()!);
+            return RedirectToAction("Index", "Home");
         }
+        ViewBag.Error = "Usuario o clave incorrectos";
+        return View();
+    }
 
-        /// <summary>
-        /// POST /Account/Login — Valida las credenciales contra la tabla Admins en la BD.
-        /// Si son correctas, guarda el usuario en sesión y redirige al inicio.
-        /// </summary>
-        /// <param name="usuario">Nombre de usuario ingresado en el formulario.</param>
-        /// <param name="clave">Contraseña ingresada en el formulario.</param>
-        [HttpPost]
-        public IActionResult Login(string usuario, string clave)
-        {
-            var admin = _context.Set<Admin>().FirstOrDefault(a => a.Usuario == usuario && a.Clave == clave);
-            if (admin != null)
-            {
-                HttpContext.Session.SetString("Admin", admin.Usuario);
-                return RedirectToAction("Index", "Home");
-            }
-            ViewBag.Error = "Usuario o clave incorrectos";
-            return View();
-        }
-
-        /// <summary>
-        /// GET /Account/Logout — Elimina la sesión del administrador y redirige al login.
-        /// </summary>
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Remove("Admin");
-            return RedirectToAction("Login");
-        }
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Remove("Admin");
+        return RedirectToAction("Login");
     }
 }

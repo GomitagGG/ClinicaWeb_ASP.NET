@@ -1,89 +1,109 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
 using ClinicaWeb.Data;
 using ClinicaWeb.Models;
 
 namespace ClinicaWeb.Controllers;
 
-/// <summary>
-/// Controlador CRUD de pacientes. Requiere sesión de administrador activa
-/// (el middleware en Program.cs redirige a /Account/Login si no hay sesión).
-/// Todas las operaciones de escritura usan <see cref="ValidateAntiForgeryToken"/> contra CSRF.
-/// </summary>
 public class PacientesController : Controller
 {
-    private readonly ClinicaContext _context;
+    private readonly DbConnectionFactory _factory;
 
-    /// <summary>
-    /// Recibe el contexto de base de datos por inyección de dependencias.
-    /// </summary>
-    public PacientesController(ClinicaContext context)
+    public PacientesController(DbConnectionFactory factory)
     {
-        _context = context;
+        _factory = factory;
     }
 
-    /// <summary>
-    /// GET /Pacientes — Recupera todos los pacientes de la BD y los muestra en la vista Index.
-    /// </summary>
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Pacientes.ToListAsync());
+        return View(await ObtenerPacientesAsync());
     }
 
-    /// <summary>
-    /// POST /Pacientes/Create — Inserta un nuevo paciente en la BD si el modelo es válido.
-    /// </summary>
-    /// <param name="paciente">Datos del paciente enviados desde el formulario.</param>
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Paciente paciente)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(paciente);
-            await _context.SaveChangesAsync();
+            using var conn = _factory.Create();
+            await conn.OpenAsync();
+            using var cmd = new MySqlCommand(
+                "INSERT INTO Pacientes (NombreCompleto, Run, Edad, Telefono, Direccion, Email, Diagnostico) " +
+                "VALUES (@NombreCompleto, @Run, @Edad, @Telefono, @Direccion, @Email, @Diagnostico)", conn);
+            AgregarParametros(cmd, paciente);
+            await cmd.ExecuteNonQueryAsync();
             return RedirectToAction(nameof(Index));
         }
-        // Si hay errores de validación, regresar la vista con los errores y abrir el modal de crear
         ViewData["AbrirModal"] = "Crear";
-        var pacientes = await _context.Pacientes.ToListAsync();
-        return View("Index", pacientes);
+        return View("Index", await ObtenerPacientesAsync());
     }
 
-    /// <summary>
-    /// POST /Pacientes/Edit/{id} — Actualiza un paciente existente en la BD.
-    /// Retorna 404 si el id de la URL no coincide con el del modelo.
-    /// </summary>
-    /// <param name="id">Identificador del paciente a editar (viene de la URL).</param>
-    /// <param name="paciente">Datos actualizados enviados desde el formulario.</param>
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Paciente paciente)
     {
         if (ModelState.IsValid)
         {
-            _context.Update(paciente);
-            await _context.SaveChangesAsync();
+            using var conn = _factory.Create();
+            await conn.OpenAsync();
+            using var cmd = new MySqlCommand(
+                "UPDATE Pacientes SET NombreCompleto=@NombreCompleto, Run=@Run, Edad=@Edad, " +
+                "Telefono=@Telefono, Direccion=@Direccion, Email=@Email, Diagnostico=@Diagnostico " +
+                "WHERE Id=@Id", conn);
+            cmd.Parameters.AddWithValue("@Id", paciente.Id);
+            AgregarParametros(cmd, paciente);
+            await cmd.ExecuteNonQueryAsync();
             return RedirectToAction(nameof(Index));
         }
-        // Si hay errores de validación, regresar la vista con los errores y abrir el modal de editar
         ViewData["AbrirModal"] = "Editar";
-        var pacientes = await _context.Pacientes.ToListAsync();
-        return View("Index", pacientes);
+        return View("Index", await ObtenerPacientesAsync());
     }
 
-    /// <summary>
-    /// POST /Pacientes/Delete/{id} — Elimina el paciente con el id indicado de la BD.
-    /// Si no existe, igual guarda cambios sin error.
-    /// </summary>
-    /// <param name="id">Identificador del paciente a eliminar.</param>
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
     {
-        var paciente = await _context.Pacientes.FindAsync(id);
-        if (paciente != null) _context.Pacientes.Remove(paciente);
-        await _context.SaveChangesAsync();
+        using var conn = _factory.Create();
+        await conn.OpenAsync();
+        using var cmd = new MySqlCommand("DELETE FROM Pacientes WHERE Id=@Id", conn);
+        cmd.Parameters.AddWithValue("@Id", id);
+        await cmd.ExecuteNonQueryAsync();
         return RedirectToAction(nameof(Index));
+    }
+
+    private async Task<List<Paciente>> ObtenerPacientesAsync()
+    {
+        var lista = new List<Paciente>();
+        using var conn = _factory.Create();
+        await conn.OpenAsync();
+        using var cmd = new MySqlCommand(
+            "SELECT Id, NombreCompleto, Run, Edad, Telefono, Direccion, Email, Diagnostico FROM Pacientes", conn);
+        using var reader = await cmd.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
+        {
+            lista.Add(new Paciente
+            {
+                Id          = reader.GetInt32("Id"),
+                NombreCompleto = reader.GetString("NombreCompleto"),
+                Run         = reader.GetString("Run"),
+                Edad        = reader.GetInt32("Edad"),
+                Telefono    = reader.GetString("Telefono"),
+                Direccion   = reader.GetString("Direccion"),
+                Email       = reader.IsDBNull(reader.GetOrdinal("Email"))       ? "" : reader.GetString("Email"),
+                Diagnostico = reader.IsDBNull(reader.GetOrdinal("Diagnostico")) ? "" : reader.GetString("Diagnostico")
+            });
+        }
+        return lista;
+    }
+
+    private static void AgregarParametros(MySqlCommand cmd, Paciente p)
+    {
+        cmd.Parameters.AddWithValue("@NombreCompleto", p.NombreCompleto);
+        cmd.Parameters.AddWithValue("@Run",            p.Run);
+        cmd.Parameters.AddWithValue("@Edad",           p.Edad);
+        cmd.Parameters.AddWithValue("@Telefono",       p.Telefono);
+        cmd.Parameters.AddWithValue("@Direccion",      p.Direccion);
+        cmd.Parameters.AddWithValue("@Email",          p.Email);
+        cmd.Parameters.AddWithValue("@Diagnostico",    p.Diagnostico);
     }
 }
